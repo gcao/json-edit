@@ -1,56 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.scss';
+import { updateJSON } from './actions';
+
+const RAW_DATA = `
+  {
+    "a": "a-value",
+    "b": [
+      {
+        "first": "first value",
+        "second": "second value"
+      },
+      {
+        "first": "first value 2",
+        "second": "second value 2"
+      },
+      {
+        "first": "first value 3",
+        "second": "second value 3",
+        "third": "third value 3"
+      }
+    ],
+    "c": [
+      [
+        "cell 1-1",
+        {
+          "first": "first value",
+          "second": "second value"
+        }
+      ],
+      [
+        "cell 2-1",
+        {
+          "first": "first value",
+          "second": "second value"
+        }
+      ]
+    ],
+    "d": { "name": "John Doe", "age": 20, "email": "john_doe@company.com" },
+    "e": [ "Test 1", "Test 2", "Test 3" ],
+    "f": []
+  }
+`;
 
 function App() {
+  const dispatch = useDispatch();
+  const [rawData, setRawData] = useState(RAW_DATA);
+  const [pathUnderMouse, setPathUnderMouse] = useState('');
+
+  let input: any;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <div>
+        <h1>JSON Presenter</h1>
+
+        Path: <span id="path">{pathUnderMouse}</span>
+
+        <button className="update"
+          onClick={() => dispatch(updateJSON(input.value))}
+        >Update</button><br />
+        <textarea className="raw-json" rows={25} cols={100}
+          ref={node => input = node}
+          value={rawData}
+          onChange={event => dispatch(updateJSON(event.target.value))}
+        />
+      </div>
     </div>
   );
 }
