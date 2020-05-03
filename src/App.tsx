@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import './App.scss';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { pathUnderMouseSel } from './features/json-edit/reducers';
 import { updateJSON } from './actions';
+import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
+
+import './App.scss';
 
 const RAW_DATA = `
   {
@@ -45,8 +49,9 @@ const RAW_DATA = `
 
 function App() {
   const dispatch = useDispatch();
-  const [rawData, setRawData] = useState(RAW_DATA);
-  const [pathUnderMouse, setPathUnderMouse] = useState('');
+  const [rawData] = useState(RAW_DATA);
+  const data = JSON.parse(rawData);
+  const pathUnderMouse = useSelector(pathUnderMouseSel);
 
   let input: any;
 
@@ -56,6 +61,7 @@ function App() {
         <h1>JSON Presenter</h1>
 
         Path: <span id="path">{pathUnderMouse}</span>
+        <JsonRootPresenter data={data} pathUnderMouse={pathUnderMouse}/>
 
         <button className="update"
           onClick={() => dispatch(updateJSON(input.value))}

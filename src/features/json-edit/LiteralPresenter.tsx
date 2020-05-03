@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { RIEInput } from 'riek';
 
-// import JsonPath from '../../json-path';
 import { updateData } from '../../actions';
 import { createMouseOverHandler } from '../../utils';
 
-export default function LiteralPresenter(data: any, path: any) {
+export default function LiteralPresenter(props: any) {
   const dispatch = useDispatch();
-  let pathUnderMouse: any = '';
+
+  const {data, path, pathUnderMouse} = props;
 
   return (
     <div className={'json-literal depth' + path.size()}

@@ -11,6 +11,6 @@ export function JsonRootPresenter({data}: any) {
   let path = new JsonPath([]);
 
   return <div className= "json-root" onMouseOut = { createMouseOutHandler(dispatch) }>
-    <GenericPresenter data={ data } path = { path } />
+    <GenericPresenter data={data} path={path} />
   </div>;
 }

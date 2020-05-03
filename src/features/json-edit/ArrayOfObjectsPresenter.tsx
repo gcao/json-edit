@@ -1,0 +1,54 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import * as R from 'ramda';
+
+import GenericPresenter from './GenericPresenter';
+import { createMouseOverHandler } from '../../utils';
+
+export default function ArrayOfObjectsPresenter(props: any) {
+  const dispatch = useDispatch();
+
+  let { data, path, pathUnderMouse } = props;
+  let keys = R.uniq(R.flatten(R.map(Object.keys, data)));
+
+  return (
+    <table className={'json-object-array depth' + path.size()}
+      onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
+    >
+      <tbody>
+        {
+          <tr className="head">
+            <th className="index-col">&nbsp;</th>
+            {
+              keys.map((key, i) =>
+                <th key={i}
+                  onMouseOver={createMouseOverHandler(dispatch, path.append(-1).append(key), pathUnderMouse)}
+                >{key}</th>
+              )
+            }
+          </tr>
+        }
+        {
+          data.map((row: any, i: number) =>
+            <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}
+              onMouseOver={createMouseOverHandler(dispatch, path.append(i), pathUnderMouse)}
+            >
+              <td className="index-col">{i + 1}</td>
+              {
+                keys.map((key, j) => {
+                  return (
+                    <td key={j}
+                      onMouseOver={createMouseOverHandler(dispatch, path.append(i).append(key), pathUnderMouse)}
+                    >
+                      <GenericPresenter data={row[key]} path={path.append(i).append(key)} />
+                    </td>
+                  );
+                })
+              }
+            </tr>
+          )
+        }
+      </tbody>
+    </table>
+  );
+}
