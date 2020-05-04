@@ -51,7 +51,8 @@ function App() {
   const dispatch = useDispatch();
   const [rawData] = useState(RAW_DATA);
   const data = JSON.parse(rawData);
-  const pathUnderMouse = useSelector(pathUnderMouseSel);
+  let pathUnderMouse = useSelector(pathUnderMouseSel);
+  pathUnderMouse = pathUnderMouse ? pathUnderMouse.toString() : '';
 
   let input: any;
 
@@ -61,16 +62,15 @@ function App() {
         <h1>JSON Presenter</h1>
 
         Path: <span id="path">{pathUnderMouse}</span>
-        <JsonRootPresenter data={data} pathUnderMouse={pathUnderMouse}/>
+        <JsonRootPresenter data={data} />
 
         <button className="update"
           onClick={() => dispatch(updateJSON(input.value))}
-        >Update</button><br />
+          >Update</button><br/>
         <textarea className="raw-json" rows={25} cols={100}
           ref={node => input = node}
           value={rawData}
-          onChange={event => dispatch(updateJSON(event.target.value))}
-        />
+          onChange={event => dispatch(updateJSON(event.target.value))} />
       </div>
     </div>
   );

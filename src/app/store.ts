@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
 import reducers from '../reducers';
 import counterReducer from '../features/counter/counterSlice';
 
@@ -7,6 +7,9 @@ export const store = configureStore({
     counter: counterReducer,
     jsonEdit: reducers,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

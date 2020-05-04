@@ -1,4 +1,4 @@
-class JsonPath {
+export default class JsonPath {
   parts: any;
 
   constructor(parts: any = []) {
@@ -32,5 +32,3 @@ class JsonPath {
     }).join('');
   }
 }
-
-export default JsonPath;
