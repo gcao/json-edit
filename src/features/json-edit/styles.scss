@@ -1,72 +1,76 @@
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 
-    &.json-array {
-        border-collapse: separate;
-    }
+  &.json-array {
+    border-collapse: separate;
+  }
 }
 
 th {
-    background-color: #eee;
+  background-color: #eee;
 }
 
 // td {
-//     padding: 4px 6px;
+//   padding: 4px 6px;
 // }
 
+th, td {
+  vertical-align: middle !important;
+}
+
 // .json-object {
-//     border: 1px solid #666;
-//     background-color: white;
+//   border: 1px solid #666;
+//   background-color: white;
 // }
 
 .json-array {
-    background-color: white;
+  background-color: white;
 }
 
 .json-empty-array {
-    font-style: italic;
-    color: white;
+  font-style: italic;
+  color: white;
 }
 
 // .json-object-array {
-//     border: 1px solid #88f;
-//     border-collapse: separate;
-//     background-color: white;
+//   border: 1px solid #88f;
+//   border-collapse: separate;
+//   background-color: white;
 // }
 
 // .json-array-array {
-//     border: 1px solid #88f;
-//     border-collapse: separate;
-//     background-color: white;
+//   border: 1px solid #88f;
+//   border-collapse: separate;
+//   background-color: white;
 // }
 
 .json-literal {
-    display: inline-block;
+  display: inline-block;
 }
 
 .json-literal-array > .json-literal {
-    border: rgba(128, 128, 128, 0.3) 1px solid;
-    margin-right: 10px;
-    padding: 3px 8px;
-    border-radius: 18px;
+  border: rgba(128, 128, 128, 0.3) 1px solid;
+  margin-right: 10px;
+  padding: 3px 8px;
+  border-radius: 18px;
 }
 
 .index-col {
-    font-size: small;
-    font-weight: bold;
+  font-size: small;
+  font-weight: bold;
 }
 
 .prop-name {
-    padding-right: 2px;
-    vertical-align: middle;
-    text-align: right;
-    font-weight: bold;
-    &::after {
-        content: " :";
-    }
+  padding-right: 2px;
+  vertical-align: middle;
+  text-align: right;
+  font-weight: bold;
+  &::after {
+    content: " :";
+  }
 }
 
 .prop-value {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
