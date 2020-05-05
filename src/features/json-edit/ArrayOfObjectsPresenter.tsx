@@ -12,28 +12,26 @@ export default function ArrayOfObjectsPresenter(props: any) {
   let keys = R.uniq(R.flatten(R.map(Object.keys, data)));
 
   return (
-    <table className={'json-object-array depth' + path.size()}
+    <table className="table json-object-array"
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
       <tbody>
-        {
-          <tr className="head">
-            <th className="index-col">&nbsp;</th>
-            {
-              keys.map((key, i) =>
-                <th key={i}
-                  onMouseOver={createMouseOverHandler(dispatch, path.append(-1).append(key), pathUnderMouse)}
-                >{key}</th>
-              )
-            }
-          </tr>
-        }
+        <tr className="head">
+          <th className="index-col">&nbsp;</th>
+          {
+            keys.map((key, i) =>
+              <th key={i}
+                onMouseOver={createMouseOverHandler(dispatch, path.append(-1).append(key), pathUnderMouse)}
+              >{key}</th>
+            )
+          }
+        </tr>
         {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}
               onMouseOver={createMouseOverHandler(dispatch, path.append(i), pathUnderMouse)}
             >
-              <td className="index-col">{i + 1}</td>
+              <td align="right" valign="middle" className="index-col">{i + 1}</td>
               {
                 keys.map((key, j) => {
                   return (

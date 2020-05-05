@@ -31,7 +31,7 @@ export default function ArrayOfArraysPresenter(props: any) {
         {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>
-              <td className="index-col"
+              <td align="right" valign="middle" className="index-col"
                 onMouseOver={createMouseOverHandler(props.dispatch, path.append(i), pathUnderMouse)}
               >{i + 1}</td>
               {

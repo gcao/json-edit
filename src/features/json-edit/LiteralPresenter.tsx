@@ -11,7 +11,7 @@ export default function LiteralPresenter(props: any) {
   const {data, path, pathUnderMouse} = props;
 
   return (
-    <div className={'json-literal depth' + path.size()}
+    <div className="json-literal"
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
       <RIEInput value={data || ''} propName="data"
