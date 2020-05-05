@@ -12,14 +12,14 @@ export default function ObjectPresenter(props: any) {
   let { data, path, pathUnderMouse } = props;
 
   return (
-    <table className={'json-object depth' + path.size()}
+    <table className={'table is-bordered is-striped json-object depth' + path.size()}
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
       <tbody>
         {
           Object.keys(data).sort().map((key, i) =>
             <tr key={key} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>
-              <td className="prop-name"
+              <td align="right" className="prop-name"
                 onMouseOver={createMouseOverHandler(dispatch, path.append(key), pathUnderMouse)}
               >
                 <RIEInput value={key || ''} propName="data"

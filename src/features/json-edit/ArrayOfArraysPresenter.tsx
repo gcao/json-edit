@@ -12,20 +12,22 @@ export default function ArrayOfArraysPresenter(props: any) {
   let width = Number(R.last(data.map(R.length).sort()));
 
   return (
-    <table className={'json-array-array depth' + path.size()}
+    <table className={'table json-array-array depth' + path.size()}
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
-      <tbody>
+      <thead>
         <tr className="head">
           <th className="index-col">&nbsp;</th>
           {
             R.times((i) =>
-              <th key={i}
+              <th align="center" key={i}
                 onMouseOver={createMouseOverHandler(props.dispatch, path.append(-1).append(i), pathUnderMouse)}
               >{i + 1}</th>
               , width)
           }
         </tr>
+      </thead>
+      <tbody>
         {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>

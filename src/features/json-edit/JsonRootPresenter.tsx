@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import './styles.scss';
+
 import JsonPath from '../../json-path';
 import GenericPresenter from './GenericPresenter';
 import { createMouseOutHandler } from '../../utils';
