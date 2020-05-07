@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.scss';
 
-import JsonPath from '../../json-path';
 import GenericPresenter from './GenericPresenter';
-import { createMouseOutHandler } from '../../utils';
-import { pathUnderMouseSel } from './reducers';
+import { createMouseOutHandler } from './utils';
+import JPath from '../../jpath';
+import { STATE_KEY } from './reducers';
 
 export function JsonRootPresenter({data}: any) {
   const dispatch = useDispatch();
-  const pathUnderMouse = useSelector(pathUnderMouseSel);
+  const pathUnderMouse = useSelector((state: any) => state[STATE_KEY].pathUnderMouse);
 
-  const path = new JsonPath([]);
+  const path = JPath.Root();
 
   return (
     <div className="json-root"

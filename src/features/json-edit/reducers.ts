@@ -1,19 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import JsonPath from 'src/json-path';
 
 interface JsonEditState {
     pathUnderMouse: any,
 }
 
 const initialState: JsonEditState = {
-  pathUnderMouse: new JsonPath(),
+  pathUnderMouse: null,
 };
 
+export const STATE_KEY = "jsonEdit";
+
 export const jsonEditSlice = createSlice({
-  name: 'jsonEdit',
+  name: STATE_KEY,
   initialState,
   reducers: {
+    clearPath: (state: any) => {
+      state.pathUnderMouse = null;
+    },
+    setPath: (state: any, action: PayloadAction<any>) => {
+      state.pathUnderMouse = action.payload.pathUnderMouse;
+    },
     updateJson: (state: any, action: PayloadAction<any>) => {
       state.rawData = action.payload.json;
       state.data = JSON.parse(action.payload.json);
@@ -21,8 +27,6 @@ export const jsonEditSlice = createSlice({
   },
 });
 
-export const { updateJson } = jsonEditSlice.actions;
-
-export const pathUnderMouseSel = (state: RootState) => state.jsonEdit.pathUnderMouse;
+export const { clearPath, setPath, updateJson } = jsonEditSlice.actions;
 
 export default jsonEditSlice.reducer;

@@ -1,58 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { pathUnderMouseSel } from './features/json-edit/reducers';
-import { updateJSON } from './actions';
-import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
 
 import './App.scss';
 
-const RAW_DATA = `
-  {
-    "a": "a-value",
-    "b": [
-      {
-        "first": "first value",
-        "second": "second value"
-      },
-      {
-        "first": "first value 2",
-        "second": "second value 2"
-      },
-      {
-        "first": "first value 3",
-        "second": "second value 3",
-        "third": "third value 3"
-      }
-    ],
-    "c": [
-      [
-        "cell 1-1",
-        {
-          "first": "first value",
-          "second": "second value"
-        }
-      ],
-      [
-        "cell 2-1",
-        {
-          "first": "first value",
-          "second": "second value"
-        }
-      ]
-    ],
-    "d": { "name": "John Doe", "age": 20, "email": "john_doe@company.com" },
-    "e": [ "Test 1", "Test 2", "Test 3" ],
-    "f": []
-  }
-`;
+import { STATE_KEY } from './features/json-edit/reducers';
+import { updateJSON } from './actions';
+import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
+import { RootState } from './app/store';
 
 function App() {
   const dispatch = useDispatch();
-  const [rawData] = useState(RAW_DATA);
+  const pathUnderMouse = useSelector((state: RootState) => state[STATE_KEY].pathUnderMouse);
+  const rawData = useSelector((state: RootState) => state[STATE_KEY].rawData);
+
   const data = JSON.parse(rawData);
-  let pathUnderMouse = useSelector(pathUnderMouseSel);
-  pathUnderMouse = pathUnderMouse ? pathUnderMouse.toString() : '';
 
   let input: any;
 

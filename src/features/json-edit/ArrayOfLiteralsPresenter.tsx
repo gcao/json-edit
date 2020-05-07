@@ -1,8 +1,7 @@
 import React from 'react';
 
-// import JsonPath from '../../json-path';
 import GenericPresenter from './GenericPresenter';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function ArrayOfLiteralsPresenter(props: any) {
   let { data, path, pathUnderMouse } = props;
@@ -13,7 +12,7 @@ export default function ArrayOfLiteralsPresenter(props: any) {
     >
       {
         data.map((row: any, i: number) =>
-          <GenericPresenter key={i} data={row} path={path.append(i)} />
+          <GenericPresenter key={i} data={row} path={path.createArrayChild(i)} />
         )
       }
     </div>

@@ -4,7 +4,7 @@ import { RIEInput } from 'riek';
 
 import { updatePropName } from '../../actions';
 import GenericPresenter from './GenericPresenter';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function ObjectPresenter(props: any) {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function ObjectPresenter(props: any) {
           Object.keys(data).sort().map((key, i) =>
             <tr key={key} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>
               <td align="right" valign="middle" className="prop-name"
-                onMouseOver={createMouseOverHandler(dispatch, path.append(key), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(dispatch, path.createMapKeyChild(key), pathUnderMouse)}
               >
                 <RIEInput value={key || ''} propName="data"
                   change={(change: any) => {
@@ -37,9 +37,9 @@ export default function ObjectPresenter(props: any) {
                 />
               </td>
               <td className="prop-value"
-                onMouseOver={createMouseOverHandler(dispatch, path.append(key), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(dispatch, path.createMapValueChild(key), pathUnderMouse)}
               >
-                <GenericPresenter data={data[key]} path={path.append(key)} />
+                <GenericPresenter data={data[key]} path={path.createMapValueChild(key)} />
               </td>
             </tr>
           )

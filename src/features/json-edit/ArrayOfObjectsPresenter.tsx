@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as R from 'ramda';
 
 import GenericPresenter from './GenericPresenter';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function ArrayOfObjectsPresenter(props: any) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function ArrayOfObjectsPresenter(props: any) {
           {
             keys.map((key, i) =>
               <th key={i}
-                onMouseOver={createMouseOverHandler(dispatch, path.append(-1).append(key), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(dispatch, path.createArrayAllChildren().createMapKeyChild(key), pathUnderMouse)}
               >{key}</th>
             )
           }
@@ -29,16 +29,17 @@ export default function ArrayOfObjectsPresenter(props: any) {
         {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}
-              onMouseOver={createMouseOverHandler(dispatch, path.append(i), pathUnderMouse)}
+              onMouseOver={createMouseOverHandler(dispatch, path.createArrayChild(i), pathUnderMouse)}
             >
               <td align="right" valign="middle" className="index-col">{i + 1}</td>
               {
                 keys.map((key, j) => {
+                  let newPath = path.createArrayChild(i).createMapValueChild(key);
                   return (
                     <td key={j}
-                      onMouseOver={createMouseOverHandler(dispatch, path.append(i).append(key), pathUnderMouse)}
+                      onMouseOver={createMouseOverHandler(dispatch, newPath, pathUnderMouse)}
                     >
-                      <GenericPresenter data={row[key]} path={path.append(i).append(key)} />
+                      <GenericPresenter data={row[key]} path={newPath} pathUnderMouse={pathUnderMouse} />
                     </td>
                   );
                 })

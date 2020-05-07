@@ -5,7 +5,7 @@ import * as R from 'ramda';
 import ArrayOfArraysPresenter from './ArrayOfArraysPresenter';
 import ArrayOfObjectsPresenter from './ArrayOfObjectsPresenter';
 import ArrayOfLiteralsPresenter from './ArrayOfLiteralsPresenter';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function ArrayPresenter(props: any) {
   const dispatch = useDispatch();

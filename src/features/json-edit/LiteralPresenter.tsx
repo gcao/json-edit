@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { RIEInput } from 'riek';
 
 import { updateData } from '../../actions';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function LiteralPresenter(props: any) {
   const dispatch = useDispatch();

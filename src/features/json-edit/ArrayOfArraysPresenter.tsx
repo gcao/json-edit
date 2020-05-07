@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as R from 'ramda';
 
 import GenericPresenter from './GenericPresenter';
-import { createMouseOverHandler } from '../../utils';
+import { createMouseOverHandler } from './utils';
 
 export default function ArrayOfArraysPresenter(props: any) {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function ArrayOfArraysPresenter(props: any) {
   let width = Number(R.last(data.map(R.length).sort()));
 
   return (
-    <table className={'table json-array-array depth' + path.size()}
+    <table className={'table json-array-array'}
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
       <thead>
@@ -21,7 +21,7 @@ export default function ArrayOfArraysPresenter(props: any) {
           {
             R.times((i) =>
               <th align="center" key={i}
-                onMouseOver={createMouseOverHandler(props.dispatch, path.append(-1).append(i), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(props.dispatch, path.createArrayAllChildren().createArrayChild(i), pathUnderMouse)}
               >{i + 1}</th>
               , width)
           }
@@ -32,15 +32,16 @@ export default function ArrayOfArraysPresenter(props: any) {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>
               <td align="right" valign="middle" className="index-col"
-                onMouseOver={createMouseOverHandler(props.dispatch, path.append(i), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(props.dispatch, path.createArrayChild(i), pathUnderMouse)}
               >{i + 1}</td>
               {
                 R.times((j) => {
+                  let newPath = path.createArrayChild(i).createArrayChild(j);
                   return (
                     <td key={j}
-                      onMouseOver={createMouseOverHandler(props.dispatch, path.append(i).append(j), pathUnderMouse)}
+                      onMouseOver={createMouseOverHandler(props.dispatch, newPath, pathUnderMouse)}
                     >
-                      <GenericPresenter data={row[j]} path={path.append(i).append(j)} />
+                      <GenericPresenter data={row[j]} path={newPath} pathUnderMouse={pathUnderMouse} />
                     </td>
                   );
                 }, width)
