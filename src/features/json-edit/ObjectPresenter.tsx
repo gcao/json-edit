@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { RIEInput } from 'riek';
 
-import { updatePropName } from '../../actions';
+// import { updatePropName } from './slice';
 import GenericPresenter from './GenericPresenter';
 import { createMouseOverHandler } from './utils';
 
@@ -31,7 +31,8 @@ export default function ObjectPresenter(props: any) {
                 <RIEInput value={key || ''} propName="data"
                   change={(change: any) => {
                     if (key !== change.data) {
-                      dispatch(updatePropName(path, key, change.data));
+                      // TODO
+                      // dispatch(updatePropName(path, key, change.data));
                     }
                   }}
                 />

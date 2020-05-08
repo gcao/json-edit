@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { RIEInput } from 'riek';
 
-import { updateData } from '../../actions';
+// import { updateData } from './slice';
 import { createMouseOverHandler } from './utils';
 
 export default function LiteralPresenter(props: any) {
@@ -17,7 +17,8 @@ export default function LiteralPresenter(props: any) {
       <RIEInput value={data || ''} propName="data"
         change={(change: any) => {
           if (data !== change.data) {
-            dispatch(updateData(path, change.data));
+            // TODO
+            // dispatch(updateData(path, change.data));
           }
         }}
       />

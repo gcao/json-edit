@@ -21,7 +21,7 @@ export default function ArrayOfArraysPresenter(props: any) {
           {
             R.times((i) =>
               <th align="center" key={i}
-                onMouseOver={createMouseOverHandler(props.dispatch, path.createArrayAllChildren().createArrayChild(i), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(dispatch, path.createArrayAllChildren().createArrayChild(i), pathUnderMouse)}
               >{i + 1}</th>
               , width)
           }
@@ -32,14 +32,14 @@ export default function ArrayOfArraysPresenter(props: any) {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}>
               <td align="right" valign="middle" className="index-col"
-                onMouseOver={createMouseOverHandler(props.dispatch, path.createArrayChild(i), pathUnderMouse)}
+                onMouseOver={createMouseOverHandler(dispatch, path.createArrayChild(i), pathUnderMouse)}
               >{i + 1}</td>
               {
                 R.times((j) => {
                   let newPath = path.createArrayChild(i).createArrayChild(j);
                   return (
                     <td key={j}
-                      onMouseOver={createMouseOverHandler(props.dispatch, newPath, pathUnderMouse)}
+                      onMouseOver={createMouseOverHandler(dispatch, newPath, pathUnderMouse)}
                     >
                       <GenericPresenter data={row[j]} path={newPath} pathUnderMouse={pathUnderMouse} />
                     </td>

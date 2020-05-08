@@ -6,7 +6,7 @@ import './styles.scss';
 import GenericPresenter from './GenericPresenter';
 import { createMouseOutHandler } from './utils';
 import JPath from '../../jpath';
-import { STATE_KEY } from './reducers';
+import { STATE_KEY } from './slice';
 
 export function JsonRootPresenter({data}: any) {
   const dispatch = useDispatch();

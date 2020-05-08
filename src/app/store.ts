@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
-import reducers from '../reducers';
+import reducers from '../features/json-edit/slice';
 import counterReducer from '../features/counter/counterSlice';
 
 export const store = configureStore({

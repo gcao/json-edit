@@ -1,4 +1,4 @@
-import { clearPath, setPath } from './reducers';
+import { clearPath, setPath } from './slice';
 
 export function createMouseOutHandler(dispatch: any) {
   return (e: any) => {
