@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import * as R from 'ramda';
 
 import GenericPresenter from './GenericPresenter';
 import { createMouseOverHandler } from './utils';
@@ -8,6 +9,14 @@ export default function ObjectPresenter(props: any) {
   const dispatch = useDispatch();
 
   let { data, path, pathUnderMouse } = props;
+
+  if (R.isEmpty(data)) {
+    return (
+      <div className="json-empty-object"
+        onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
+      >Empty object</div>
+    );
+  }
 
   return (
     <table className="table is-bordered is-striped json-object"

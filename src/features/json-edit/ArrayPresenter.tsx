@@ -12,19 +12,17 @@ export default function ArrayPresenter(props: any) {
 
   let { data, path, pathUnderMouse } = props;
 
-  if (data.length > 0) {
-    if (R.is(Array, data[0])) {
-      return (<ArrayOfArraysPresenter data={data} path={path} />);
-    } else if (R.is(Object, data[0])) {
-      return (<ArrayOfObjectsPresenter data={data} path={path} />);
-    } else {
-      return (<ArrayOfLiteralsPresenter data={data} path={path} />);
-    }
-  } else {
+  if (R.isEmpty(data)) {
     return (
       <div className="json-empty-array"
         onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
       >Empty array</div>
     );
+  } else if (R.is(Array, data[0])) {
+    return (<ArrayOfArraysPresenter data={data} path={path} />);
+  } else if (R.is(Object, data[0])) {
+    return (<ArrayOfObjectsPresenter data={data} path={path} />);
+  } else {
+    return (<ArrayOfLiteralsPresenter data={data} path={path} />);
   }
 }

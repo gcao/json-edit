@@ -22,9 +22,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1>JSON Presenter</h1>
-
-        Path: <span id="path">{pathUnderMouse}</span>
+        Current Path: <span id="path">{pathUnderMouse}</span>
         <JsonRootPresenter data={data} />
 
         <button className="update"

@@ -44,7 +44,9 @@ const RAW_DATA = `
     ],
     "d": { "name": "John Doe", "age": 20, "email": "john_doe@company.com" },
     "e": [ "Test 1", "Test 2", "Test 3" ],
-    "f": []
+    "f": true,
+    "g": [],
+    "h": {}
   }
 `;
 
