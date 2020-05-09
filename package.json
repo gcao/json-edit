@@ -1,7 +1,7 @@
 {
   "name": "json-edit",
   "version": "0.1.0",
-  "private": true,
+  "repository": "git@github.com:gcao/json-edit.git",
   "engines": {
     "node": ">=12.13"
   },
