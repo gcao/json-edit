@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { RIEInput } from 'riek';
 
-// import { updatePropName } from './slice';
 import GenericPresenter from './GenericPresenter';
 import { createMouseOverHandler } from './utils';
 
@@ -28,14 +26,7 @@ export default function ObjectPresenter(props: any) {
               <td align="right" valign="middle" className="prop-name"
                 onMouseOver={createMouseOverHandler(dispatch, path.createMapKeyChild(key), pathUnderMouse)}
               >
-                <RIEInput value={key || ''} propName="data"
-                  change={(change: any) => {
-                    if (key !== change.data) {
-                      // TODO
-                      // dispatch(updatePropName(path, key, change.data));
-                    }
-                  }}
-                />
+                {key || ''}
               </td>
               <td className="prop-value"
                 onMouseOver={createMouseOverHandler(dispatch, path.createMapValueChild(key), pathUnderMouse)}

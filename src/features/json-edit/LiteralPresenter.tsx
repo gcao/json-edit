@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { RIEInput } from 'riek';
 
-// import { updateData } from './slice';
 import { createMouseOverHandler } from './utils';
 
 export default function LiteralPresenter(props: any) {
@@ -14,14 +12,7 @@ export default function LiteralPresenter(props: any) {
     <div className="json-literal"
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
-      <RIEInput value={data || ''} propName="data"
-        change={(change: any) => {
-          if (data !== change.data) {
-            // TODO
-            // dispatch(updateData(path, change.data));
-          }
-        }}
-      />
+      {data || ''}
     </div>
   );
 }
