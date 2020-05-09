@@ -26,6 +26,21 @@ export const slice = createSlice({
       state.rawData = action.payload;
       state.data = JSON.parse(action.payload);
     },
+    updateData: (state: any, action: PayloadAction<any>) => {
+      // TODO
+      // path = action.path;
+      // value = action.value;
+      // // TODO make a copy instead of change in place to support undo/redo
+      // current = state.data;
+      // path.parts.slice(0, path.size() - 1).forEach(part => {
+      //     current = current[part];
+      // });
+      // current[path.parts[path.size() - 1]] = value;
+      // return Object.assign({}, state, {
+      //     rawData: JSON.stringify(state.data, null, 4),
+      //     data: state.data
+      // });
+    },
     updatePropName: (state: any, action: PayloadAction<any>) => {
       // TODO
       // path = action.path;
@@ -47,6 +62,7 @@ export const {
   clearPath,
   setPath,
   updateJson,
+  updateData,
   updatePropName,
 } = slice.actions;
 
