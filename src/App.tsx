@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './App.scss';
 
+import { selectOrientation, LayoutOrientation } from './features/layout/slice';
 import { STATE_KEY, updateJson } from './features/json-edit/slice';
 import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
 import { RootState } from './app/store';
 
 function App() {
   const dispatch = useDispatch();
+  const orientation = useSelector(selectOrientation);
+
   let pathUnderMouse = useSelector((state: RootState) => state[STATE_KEY].pathUnderMouse);
   if (pathUnderMouse != null) {
     pathUnderMouse = pathUnderMouse.toString();
@@ -19,22 +22,26 @@ function App() {
 
   let input: any;
 
-  return (
-    <div className="App">
-      <div>
-        Current Path: <span id="path">{pathUnderMouse}</span>
-        <JsonRootPresenter data={data} />
+  if (orientation === LayoutOrientation.Horizontal) {
+    return <div>TODO</div>;
+  } else {
+    return (
+      <div className="App">
+        <div>
+          Current Path: <span id="path">{pathUnderMouse}</span>
+          <JsonRootPresenter data={data} />
 
-        <button className="update"
-          onClick={() => dispatch(updateJson(input.value))}
-          >Update</button><br/>
-        <textarea className="raw-json" rows={25} cols={100}
-          ref={node => input = node}
-          value={rawData}
-          onChange={event => dispatch(updateJson(event.target.value))} />
+          <button className="update"
+            onClick={() => dispatch(updateJson(input.value))}
+          >Update</button><br />
+          <textarea className="raw-json" rows={25} cols={100}
+            ref={node => input = node}
+            value={rawData}
+            onChange={event => dispatch(updateJson(event.target.value))} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
-import reducers from '../features/json-edit/slice';
-import counterReducer from '../features/counter/counterSlice';
+import layoutReducers from '../features/layout/slice';
+import jsonEditReducers from '../features/json-edit/slice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    jsonEdit: reducers,
+    layout: layoutReducers,
+    jsonEdit: jsonEditReducers,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
