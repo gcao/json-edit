@@ -1,4 +1,11 @@
+import JPath from '../../jpath';
 import { clearPath, setPath } from './slice';
+
+/**
+ * Custom hook to return data under path
+ */
+export function useGetDataByPath(path: JPath): any {
+}
 
 export function createMouseOutHandler(dispatch: any) {
   return (e: any) => {

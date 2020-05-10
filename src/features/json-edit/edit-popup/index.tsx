@@ -1,20 +1,19 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import { updateData } from '../slice';
 import { hide, selectEditing } from './slice';
 
-export default function EditPopup({children}: any) {
+export default function EditPopup({onSave, children}: any) {
   const dispatch = useDispatch();
   const editing = useSelector(selectEditing);
 
   const closeHandler = () => {
-    hide();
+    dispatch(hide());
   };
   const saveHandler = () => {
-    hide();
-    dispatch(updateData(""));
+    dispatch(hide());
+    onSave();
   };
 
   return (

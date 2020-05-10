@@ -7,7 +7,7 @@ interface EditPopupState {
 }
 
 const initialState: EditPopupState = {
-  editing: false,
+  editing: true,
 };
 
 export const STATE_KEY = "editPopup";

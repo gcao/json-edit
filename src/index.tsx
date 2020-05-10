@@ -46,7 +46,8 @@ const RAW_DATA = `
     "e": [ "Test 1", "Test 2", "Test 3" ],
     "f": true,
     "g": [],
-    "h": {}
+    "h": {},
+    "i": null
   }
 `;
 

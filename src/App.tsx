@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 
 import { selectOrientation, LayoutOrientation } from './features/layout/slice';
-import { STATE_KEY, updateJson } from './features/json-edit/slice';
+import { STATE_KEY, updateJson, selectPathUnderMouse } from './features/json-edit/slice';
 import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
 import { RootState } from './app/store';
-import EditPopup from './features/json-edit/edit-popup';
+import JsonEditPopup from './features/json-edit/JsonEditPopup';
 
 function App() {
   const dispatch = useDispatch();
   const orientation = useSelector(selectOrientation);
 
-  let pathUnderMouse = useSelector((state: RootState) => state[STATE_KEY].pathUnderMouse);
+  let pathUnderMouse = useSelector(selectPathUnderMouse);
   if (pathUnderMouse != null) {
     pathUnderMouse = pathUnderMouse.toString();
   }
@@ -40,9 +40,7 @@ function App() {
             value={rawData}
             onChange={event => dispatch(updateJson(event.target.value))} />
         </div>
-        <EditPopup>
-          <div>Content goes here...</div>
-        </EditPopup>
+        <JsonEditPopup />
       </div>
     );
   }

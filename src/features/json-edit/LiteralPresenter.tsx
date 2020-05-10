@@ -18,6 +18,14 @@ export default function LiteralPresenter(props: any) {
         <label></label>
       </div>
     );
+  } else if (data === null) {
+    return (
+      <div className="json-literal json-null"
+        onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
+      >
+        null
+      </div>
+    );
   } else {
     return (
       <div className="json-literal"

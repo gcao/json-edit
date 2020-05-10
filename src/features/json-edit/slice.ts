@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { RootState } from '../../app/store';
+
 interface JsonEditState {
   rawData: string,
   pathUnderMouse: any,
@@ -65,5 +67,7 @@ export const {
   updateData,
   updatePropName,
 } = slice.actions;
+
+export const selectPathUnderMouse = (state: RootState) => state[STATE_KEY].pathUnderMouse;
 
 export default slice.reducer;
