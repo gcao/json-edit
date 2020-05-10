@@ -1,24 +1,7 @@
-import JPath from '../../jpath';
-import { clearPath, setPath } from './slice';
-
-/**
- * Custom hook to return data under path
- */
-export function useGetDataByPath(path: JPath): any {
-}
-
-export function createMouseOutHandler(dispatch: any) {
-  return (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(clearPath());
-  };
-}
+import { setPath } from './slice';
 
 export function createMouseOverHandler(dispatch: any, path: any, pathUnderMouse: any) {
-  return (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
+  return () => {
     if (!pathUnderMouse || path.toString() !== pathUnderMouse.toString()) {
       dispatch(setPath(path));
     }

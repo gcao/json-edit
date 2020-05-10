@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
-import './index.scss';
-
 import App from './App';
 import { store } from './app/store';
 import { updateJson } from './features/json-edit/slice';
+import './index.scss';
 
 const RAW_DATA = `
   {

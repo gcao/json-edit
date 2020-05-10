@@ -1,11 +1,11 @@
 import * as R from "ramda";
 
 export enum PathType {
-  ROOT          = 0,
+  ROOT = 0,
   ARRAY_ELEMENT = 1,
-  MAP_KEY       = 2,
-  MAP_VALUE     = 3,
-  ARRAY_ALL     = 4,   // match all child elements of an array
+  MAP_KEY = 2,
+  MAP_VALUE = 3,
+  ARRAY_ALL = 4, // match all child elements of an array
 }
 
 export default class JPath {
@@ -53,9 +53,9 @@ export default class JPath {
    */
   public search(target: any): any {
     let pathItems = this.spread();
-    for (let i=0; i<pathItems.length; i++) {
+    for (let i = 0; i < pathItems.length; i++) {
       let pathItem = pathItems[i];
-      switch(pathItem.type) {
+      switch (pathItem.type) {
         case PathType.ARRAY_ELEMENT:
           if (R.is(Array, target)) {
             target = target[pathItem.index as number];
@@ -111,7 +111,7 @@ export default class JPath {
         break;
 
       case PathType.MAP_VALUE:
-        if (R.is(Array, parentValue)) {
+        if (R.is(Object, parentValue)) {
           parentValue[this.key as string] = newValue;
         } else {
           throw new Error("JPath update error: MAP_VALUE can only be applied on an object");

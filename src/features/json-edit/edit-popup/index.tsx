@@ -1,7 +1,6 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { hide, selectEditing } from './slice';
 
 export default function EditPopup({onSave, children}: any) {

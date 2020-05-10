@@ -1,10 +1,9 @@
+import * as R from 'ramda';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import * as R from 'ramda';
-
 import ArrayOfArraysPresenter from './ArrayOfArraysPresenter';
-import ArrayOfObjectsPresenter from './ArrayOfObjectsPresenter';
 import ArrayOfLiteralsPresenter from './ArrayOfLiteralsPresenter';
+import ArrayOfObjectsPresenter from './ArrayOfObjectsPresenter';
 import { createMouseOverHandler } from './utils';
 
 export default function ArrayPresenter(props: any) {

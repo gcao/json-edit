@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { RootState } from '../../app/store';
+import JPath from '../../jpath';
 
 interface JsonEditState {
   rawData: string,
-  pathUnderMouse: any,
+  data: any,
+  pathUnderMouse?: JPath,
 }
 
 const initialState: JsonEditState = {
-  rawData: "{}",
-  pathUnderMouse: null,
+  rawData: "null",
+  data: null,
 };
 
 export const STATE_KEY = "jsonEdit";
@@ -29,19 +30,8 @@ export const slice = createSlice({
       state.data = JSON.parse(action.payload);
     },
     updateData(state: any, action: PayloadAction<any>) {
-      // TODO
-      // path = action.path;
-      // value = action.value;
-      // // TODO make a copy instead of change in place to support undo/redo
-      // current = state.data;
-      // path.parts.slice(0, path.size() - 1).forEach(part => {
-      //     current = current[part];
-      // });
-      // current[path.parts[path.size() - 1]] = value;
-      // return Object.assign({}, state, {
-      //     rawData: JSON.stringify(state.data, null, 4),
-      //     data: state.data
-      // });
+      let { path, value } = action.payload;
+      state.data = path.update(state.data, value);
     },
     updatePropName(state: any, action: PayloadAction<any>) {
       // TODO
@@ -68,6 +58,7 @@ export const {
   updatePropName,
 } = slice.actions;
 
+export const selectData = (state: RootState) => state[STATE_KEY].data;
 export const selectPathUnderMouse = (state: RootState) => state[STATE_KEY].pathUnderMouse;
 
 export default slice.reducer;

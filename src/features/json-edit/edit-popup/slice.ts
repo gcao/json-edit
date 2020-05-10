@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { RootState } from '../../../app/store';
 
 interface EditPopupState {
@@ -7,7 +6,7 @@ interface EditPopupState {
 }
 
 const initialState: EditPopupState = {
-  editing: true,
+  editing: false,
 };
 
 export const STATE_KEY = "editPopup";
