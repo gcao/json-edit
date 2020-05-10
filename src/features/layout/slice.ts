@@ -21,7 +21,7 @@ export const slice = createSlice({
   name: STATE_KEY,
   initialState,
   reducers: {
-    changeOrientation: (state: any, action: PayloadAction<any>) => {
+    changeOrientation(state: any, action: PayloadAction<any>) {
     },
   },
 });

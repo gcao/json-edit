@@ -7,6 +7,7 @@ import { selectOrientation, LayoutOrientation } from './features/layout/slice';
 import { STATE_KEY, updateJson } from './features/json-edit/slice';
 import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
 import { RootState } from './app/store';
+import EditPopup from './features/json-edit/edit-popup';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
             value={rawData}
             onChange={event => dispatch(updateJson(event.target.value))} />
         </div>
+        <EditPopup>
+          <div>Content goes here...</div>
+        </EditPopup>
       </div>
     );
   }

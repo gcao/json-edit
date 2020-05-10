@@ -16,17 +16,17 @@ export const slice = createSlice({
   name: STATE_KEY,
   initialState,
   reducers: {
-    clearPath: (state: any) => {
+    clearPath(state: any) {
       state.pathUnderMouse = null;
     },
-    setPath: (state: any, action: PayloadAction<any>) => {
+    setPath(state: any, action: PayloadAction<any>) {
       state.pathUnderMouse = action.payload;
     },
-    updateJson: (state: any, action: PayloadAction<any>) => {
+    updateJson(state: any, action: PayloadAction<any>) {
       state.rawData = action.payload;
       state.data = JSON.parse(action.payload);
     },
-    updateData: (state: any, action: PayloadAction<any>) => {
+    updateData(state: any, action: PayloadAction<any>) {
       // TODO
       // path = action.path;
       // value = action.value;
@@ -41,7 +41,7 @@ export const slice = createSlice({
       //     data: state.data
       // });
     },
-    updatePropName: (state: any, action: PayloadAction<any>) => {
+    updatePropName(state: any, action: PayloadAction<any>) {
       // TODO
       // path = action.path;
       // var oldName = action.oldName;
