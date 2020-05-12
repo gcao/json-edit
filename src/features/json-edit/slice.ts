@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import JPath from '../../jpath';
+import { stringify } from './utils';
 
 interface JsonEditState {
   rawData: string,
@@ -32,6 +33,7 @@ export const slice = createSlice({
     updateData(state: any, action: PayloadAction<any>) {
       let { path, value } = action.payload;
       state.data = path.update(state.data, value);
+      state.rawData = stringify(state.data);
     },
     updatePropName(state: any, action: PayloadAction<any>) {
       // TODO

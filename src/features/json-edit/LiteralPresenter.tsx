@@ -20,7 +20,7 @@ export default function LiteralPresenter(props: any) {
     return (
       <div className="field">
         <input type="checkbox" className="switch is-rounded" checked={data}
-          onChange={(value: any) => { }} />
+          onChange={() => { }} />
         <label></label>
       </div>
     );
