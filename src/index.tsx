@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
-import './index.scss';
-
 import App from './App';
 import { store } from './app/store';
 import { updateJson } from './features/json-edit/slice';
+import './index.scss';
 
 const RAW_DATA = `
   {
@@ -46,7 +44,8 @@ const RAW_DATA = `
     "e": [ "Test 1", "Test 2", "Test 3" ],
     "f": true,
     "g": [],
-    "h": {}
+    "h": {},
+    "i": null
   }
 `;
 

@@ -1,11 +1,7 @@
-import { clearPath, setPath } from './slice';
+import { setPath } from './slice';
 
-export function createMouseOutHandler(dispatch: any) {
-  return (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(clearPath());
-  };
+export function stringify(obj: any) {
+  return JSON.stringify(obj, null, 2);
 }
 
 export function createMouseOverHandler(dispatch: any, path: any, pathUnderMouse: any) {

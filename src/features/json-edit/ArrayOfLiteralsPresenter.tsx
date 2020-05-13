@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
 import GenericPresenter from './GenericPresenter';
 import { createMouseOverHandler } from './utils';
 

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { RootState } from '../../app/store';
 
 export enum LayoutOrientation {
@@ -21,7 +20,7 @@ export const slice = createSlice({
   name: STATE_KEY,
   initialState,
   reducers: {
-    changeOrientation: (state: any, action: PayloadAction<any>) => {
+    changeOrientation(state: any, action: PayloadAction<any>) {
     },
   },
 });

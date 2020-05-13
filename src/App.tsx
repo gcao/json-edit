@@ -1,24 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
-
-import { selectOrientation, LayoutOrientation } from './features/layout/slice';
-import { STATE_KEY, updateJson } from './features/json-edit/slice';
-import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
 import { RootState } from './app/store';
+import JsonEditPopup from './features/json-edit/JsonEditPopup';
+import { JsonRootPresenter } from './features/json-edit/JsonRootPresenter';
+import { selectData, selectPathUnderMouse, STATE_KEY, updateJson } from './features/json-edit/slice';
+import { LayoutOrientation, selectOrientation } from './features/layout/slice';
 
 function App() {
   const dispatch = useDispatch();
   const orientation = useSelector(selectOrientation);
+  const data = useSelector(selectData);
+  const rawData = useSelector((state: RootState) => state[STATE_KEY].rawData);
 
-  let pathUnderMouse = useSelector((state: RootState) => state[STATE_KEY].pathUnderMouse);
+  let pathUnderMouse: any = useSelector(selectPathUnderMouse);
   if (pathUnderMouse != null) {
     pathUnderMouse = pathUnderMouse.toString();
   }
-  const rawData = useSelector((state: RootState) => state[STATE_KEY].rawData);
-
-  const data = JSON.parse(rawData);
 
   let input: any;
 
@@ -33,12 +31,14 @@ function App() {
 
           <button className="update"
             onClick={() => dispatch(updateJson(input.value))}
-          >Update</button><br />
+          >Update</button>
+          <br />
           <textarea className="raw-json" rows={25} cols={100}
             ref={node => input = node}
             value={rawData}
             onChange={event => dispatch(updateJson(event.target.value))} />
         </div>
+        <JsonEditPopup />
       </div>
     );
   }
