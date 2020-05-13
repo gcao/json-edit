@@ -5,8 +5,9 @@ import App from './App';
 import { store } from './app/store';
 import { updateJson } from './features/json-edit/slice';
 import './index.scss';
+import LocationHandler from './utils';
 
-const RAW_DATA = `
+let rawData = `
   {
     "a": "a-value",
     "b": [
@@ -49,7 +50,15 @@ const RAW_DATA = `
   }
 `;
 
-store.dispatch(updateJson(RAW_DATA));
+const locationHandler = new LocationHandler();
+if (locationHandler.hasJson) {
+  (async () => {
+    rawData = await locationHandler.getText();
+    store.dispatch(updateJson(rawData));
+  })();
+} else {
+  store.dispatch(updateJson(rawData));
+}
 
 ReactDOM.render(
   <React.StrictMode>
