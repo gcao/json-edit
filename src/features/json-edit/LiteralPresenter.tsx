@@ -11,7 +11,7 @@ export default function LiteralPresenter(props: any) {
 
   const { data, path } = props;
 
-  const clickHandler = () => {
+  const editInPopup = () => {
     dispatch(setPath(path));
     dispatch(show());
   }
@@ -27,7 +27,7 @@ export default function LiteralPresenter(props: any) {
   } else if (data === null) {
     return (
       <div className="json-literal json-null"
-        onClick={clickHandler}
+        onDoubleClick={editInPopup}
         onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
       >
         null
@@ -36,7 +36,7 @@ export default function LiteralPresenter(props: any) {
   } else {
     return (
       <div className="json-literal"
-        onClick={clickHandler}
+        onDoubleClick={editInPopup}
         onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
       >
         {data || ''}
