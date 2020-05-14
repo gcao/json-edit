@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import JPath from '../../jpath';
 import { selectEditing } from './edit-popup/slice';
-import GenericPresenter from './GenericPresenter';
+import GenericView from './GenericView';
 import { clearPath } from './slice';
 import './styles.scss';
 
-export function JsonRootPresenter({ data }: any) {
+export function JsonRootView({ data }: any) {
   const dispatch = useDispatch();
   const editing = useSelector(selectEditing);
 
@@ -24,7 +24,7 @@ export function JsonRootPresenter({ data }: any) {
     <div className="json-root"
       onMouseOut={mouseOutHandler}
     >
-      <GenericPresenter data={data} path={path} />
+      <GenericView data={data} path={path} />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hide, selectEditing } from './slice';
 
-export default function EditPopup({onSave, children}: any) {
+export default function EditPopup({title, onSave, children}: any) {
   const dispatch = useDispatch();
   const editing = useSelector(selectEditing);
 
@@ -21,7 +21,7 @@ export default function EditPopup({onSave, children}: any) {
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Modal title</p>
+            <p className="modal-card-title">{title}</p>
             <button className="delete" aria-label="close" onClick={closeHandler}></button>
           </header>
           <section className="modal-card-body">

@@ -1,8 +1,10 @@
 {
   "name": "json-edit",
+  "description": "A generic JSON editor",
   "version": "0.1.0",
-  "repository": "git@github.com:gcao/json-edit.git",
-  "homepage": ".",
+  "repository": "github:gcao/json-edit",
+  "homepage": "https://github.com/gcao/json-edit",
+  "license": "MIT",
   "engines": {
     "node": ">=12.13"
   },

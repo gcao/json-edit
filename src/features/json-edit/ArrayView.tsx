@@ -1,12 +1,12 @@
 import * as R from 'ramda';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import ArrayOfArraysPresenter from './ArrayOfArraysPresenter';
-import ArrayOfLiteralsPresenter from './ArrayOfLiteralsPresenter';
-import ArrayOfObjectsPresenter from './ArrayOfObjectsPresenter';
+import ArrayOfArraysView from './ArrayOfArraysView';
+import ArrayOfLiteralsView from './ArrayOfLiteralsView';
+import ArrayOfObjectsView from './ArrayOfObjectsView';
 import { createMouseOverHandler } from './utils';
 
-export default function ArrayPresenter(props: any) {
+export default function ArrayView(props: any) {
   const dispatch = useDispatch();
 
   let { data, path, pathUnderMouse } = props;
@@ -18,10 +18,10 @@ export default function ArrayPresenter(props: any) {
       >Empty array</div>
     );
   } else if (R.is(Array, data[0])) {
-    return (<ArrayOfArraysPresenter data={data} path={path} />);
+    return (<ArrayOfArraysView data={data} path={path} />);
   } else if (R.is(Object, data[0])) {
-    return (<ArrayOfObjectsPresenter data={data} path={path} />);
+    return (<ArrayOfObjectsView data={data} path={path} />);
   } else {
-    return (<ArrayOfLiteralsPresenter data={data} path={path} />);
+    return (<ArrayOfLiteralsView data={data} path={path} />);
   }
 }

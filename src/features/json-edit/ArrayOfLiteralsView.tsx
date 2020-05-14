@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import GenericPresenter from './GenericPresenter';
+import GenericView from './GenericView';
 import { createMouseOverHandler } from './utils';
 
-export default function ArrayOfLiteralsPresenter(props: any) {
+export default function ArrayOfLiteralsView(props: any) {
   const dispatch = useDispatch();
   let { data, path, pathUnderMouse } = props;
 
@@ -13,7 +13,7 @@ export default function ArrayOfLiteralsPresenter(props: any) {
     >
       {
         data.map((row: any, i: number) =>
-          <GenericPresenter key={i} data={row} path={path.createArrayChild(i)} />
+          <GenericView key={i} data={row} path={path.createArrayChild(i)} />
         )
       }
     </div>
