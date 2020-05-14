@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import GenericPresenter from './GenericPresenter';
+import GenericView from './GenericView';
 import { createMouseOverHandler } from './utils';
 
-export default function ArrayOfObjectsPresenter(props: any) {
+export default function ArrayOfObjectsView(props: any) {
   const dispatch = useDispatch();
 
   let { data, path, pathUnderMouse } = props;
@@ -38,7 +38,7 @@ export default function ArrayOfObjectsPresenter(props: any) {
                     <td key={j}
                       onMouseOver={createMouseOverHandler(dispatch, newPath, pathUnderMouse)}
                     >
-                      <GenericPresenter data={row[key]} path={newPath} pathUnderMouse={pathUnderMouse} />
+                      <GenericView data={row[key]} path={newPath} pathUnderMouse={pathUnderMouse} />
                     </td>
                   );
                 })

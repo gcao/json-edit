@@ -7,7 +7,7 @@ import { updateJson } from './features/json-edit/slice';
 import './index.scss';
 import LocationHandler from './utils';
 
-let rawData = `
+let jsonString = `
   {
     "a": "a-value",
     "b": [
@@ -53,11 +53,11 @@ let rawData = `
 const locationHandler = new LocationHandler();
 if (locationHandler.hasJson) {
   (async () => {
-    rawData = await locationHandler.getText();
-    store.dispatch(updateJson(rawData));
+    jsonString = await locationHandler.getText();
+    store.dispatch(updateJson(jsonString));
   })();
 } else {
-  store.dispatch(updateJson(rawData));
+  store.dispatch(updateJson(jsonString));
 }
 
 ReactDOM.render(

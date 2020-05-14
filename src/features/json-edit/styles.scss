@@ -1,28 +1,6 @@
-table {
-  border-collapse: collapse;
-
-  &.json-array {
-    border-collapse: separate;
-  }
-}
-
 th {
   background-color: #eee;
 }
-
-// td {
-//   padding: 4px 6px;
-// }
-
-th, td {
-  padding: 0.35em, 0.5em !important;
-  vertical-align: middle !important;
-}
-
-// .json-object {
-//   border: 1px solid #666;
-//   background-color: white;
-// }
 
 .json-array {
   background-color: white;
@@ -32,18 +10,6 @@ th, td {
   font-style: italic;
   color: gray;
 }
-
-// .json-object-array {
-//   border: 1px solid #88f;
-//   border-collapse: separate;
-//   background-color: white;
-// }
-
-// .json-array-array {
-//   border: 1px solid #88f;
-//   border-collapse: separate;
-//   background-color: white;
-// }
 
 .json-literal {
   display: inline-block;
@@ -74,4 +40,3 @@ th, td {
 .prop-value {
   vertical-align: middle;
 }
-

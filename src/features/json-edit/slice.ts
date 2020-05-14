@@ -4,13 +4,13 @@ import JPath from '../../jpath';
 import { stringify } from './utils';
 
 interface JsonEditState {
-  rawData: string,
+  jsonString: string,
   data: any,
   pathUnderMouse?: JPath,
 }
 
 const initialState: JsonEditState = {
-  rawData: "null",
+  jsonString: "null",
   data: null,
 };
 
@@ -27,13 +27,13 @@ export const slice = createSlice({
       state.pathUnderMouse = action.payload;
     },
     updateJson(state: any, action: PayloadAction<any>) {
-      state.rawData = action.payload;
+      state.jsonString = action.payload;
       state.data = JSON.parse(action.payload);
     },
     updateData(state: any, action: PayloadAction<any>) {
       let { path, value } = action.payload;
       state.data = path.update(state.data, value);
-      state.rawData = stringify(state.data);
+      state.jsonString = stringify(state.data);
     },
     updatePropName(state: any, action: PayloadAction<any>) {
       // TODO
@@ -45,7 +45,7 @@ export const slice = createSlice({
       // current[newName] = current[oldName];
       // delete current[oldName];
       // return Object.assign({}, state, {
-      //     rawData: JSON.stringify(state.data, null, 4),
+      //     jsonString: JSON.stringify(state.data, null, 4),
       //     data: state.data
       // });
     }

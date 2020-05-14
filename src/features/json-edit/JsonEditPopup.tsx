@@ -26,7 +26,7 @@ export default function JsonEditPopup() {
   }
 
   return (
-    <EditPopup onSave={saveHandler}>
+    <EditPopup title="Edit" onSave={saveHandler}>
       <div className="field">
         <label className="label">New Value:</label>
         <div className="control">

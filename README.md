@@ -1,3 +1,7 @@
+# json-edit
+
+json-edit is a generic JSON editor that allows the user to edit any JSON data in an intuitive way.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts

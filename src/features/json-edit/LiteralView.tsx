@@ -5,7 +5,7 @@ import { show } from './edit-popup/slice';
 import { selectPathUnderMouse, setPath } from './slice';
 import { createMouseOverHandler } from './utils';
 
-export default function LiteralPresenter(props: any) {
+export default function LiteralView(props: any) {
   const dispatch = useDispatch();
   let pathUnderMouse = useSelector(selectPathUnderMouse);
 
