@@ -19,28 +19,13 @@ export class ConfigItem {
     return this._children;
   }
 
-  static fromSerializable(o: any): ConfigItem {
-    let config = new ConfigItem();
-    config.type = o.type;
-    if (o.type === "array") {
-      config._children = this.fromSerializable(o.children);
-    } else if (o.type === "object") {
-      config._props = {} as any;
-      for (let [key, value] of Object.entries(o.props)) {
-        config._props[key] = this.fromSerializable(value);
-      }
-    }
-    return config;
-  }
-
-  public static deserialize(json: string): ConfigItem {
-    return this.fromSerializable(JSON.parse(json));
-  }
-
   constructor() {
     this.type = "any";
   }
 
+  /**
+   * Return an object that can be serialized using JSON.stringify
+   */
   toSerializable(): any {
     let o: any = {};
     o.type = this.type;
@@ -58,6 +43,25 @@ export class ConfigItem {
   public toString() {
     return JSON.stringify(this.toSerializable(), null, 2);
   }
+
+  /**
+   * Deserialize from result of ConfigItem.toSerializable().
+   * 
+   * @param o result of ConfigItem.toSerializable()
+   */
+  static fromSerializable(o: any): ConfigItem {
+    let config = new ConfigItem();
+    config.type = o.type;
+    if (o.type === "array") {
+      config._children = this.fromSerializable(o.children);
+    } else if (o.type === "object") {
+      config._props = {} as any;
+      for (let [key, value] of Object.entries(o.props)) {
+        config._props[key] = this.fromSerializable(value);
+      }
+    }
+    return config;
+  }
 }
 
 export default class JConfig {
@@ -65,6 +69,12 @@ export default class JConfig {
 
   constructor() {
     this.root = new ConfigItem();
+  }
+
+  public toString(): string {
+    let o: any = {};
+    o.root = this.root.toSerializable();
+    return JSON.stringify(o, null, 2);
   }
 
   public static fromJson(json: string): JConfig {
@@ -95,11 +105,5 @@ export default class JConfig {
     let parsed = JSON.parse(json);
     config.root = ConfigItem.fromSerializable(parsed.root);
     return config;
-  }
-
-  public toString(): string {
-    let o: any = {};
-    o.root = this.root.toSerializable();
-    return JSON.stringify(o, null, 2);
   }
 }
