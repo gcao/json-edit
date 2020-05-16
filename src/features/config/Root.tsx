@@ -1,10 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import JConfig from 'src/jconfig';
+import './index.scss';
+import GenericConfig from './GenericConfig';
 
-export default function Root(props: any) {
-  const dispatch = useDispatch();
+interface RootProps {
+  config: JConfig,
+}
 
+export default function Root({ config }: RootProps) {
   return (
-    <div>TODO</div>
+    <div className="json-config-root">
+      <div>Configuration</div>
+      <GenericConfig config={config.root} />
+    </div>
   );
 }

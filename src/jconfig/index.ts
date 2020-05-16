@@ -150,7 +150,7 @@ export default class JConfig {
     return config;
   }
 
-  static dataToConfig(data: any, config: ConfigItem) {
+  private static dataToConfig(data: any, config: ConfigItem) {
     config.type = R.is(Array, data) ? "array" : typeof (data);
 
     if (config.type === "array") {

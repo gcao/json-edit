@@ -61,6 +61,7 @@ export const {
 } = slice.actions;
 
 export const selectData = (state: RootState) => state[STATE_KEY].data;
+export const selectJsonString = (state: RootState) => state[STATE_KEY].jsonString;
 export const selectPathUnderMouse = (state: RootState) => state[STATE_KEY].pathUnderMouse;
 
 export default slice.reducer;
