@@ -1,5 +1,71 @@
 import * as R from "ramda";
 
+// export interface IConfig {
+//   required: boolean;
+//   toString(): string;
+// }
+
+// export abstract class Config implements IConfig {
+//   public required: boolean = false;
+
+//   toString(): string {
+//     throw new Error("Method not implemented.");
+//   }
+// }
+
+// export class AnyConfig extends Config {
+// }
+
+// /**
+//  * Allow specified properties only
+//  */
+// export class ObjectConfig extends Config {
+// }
+
+// /**
+//  * Allows property with any name
+//  */
+// export class GenericObjectConfig extends Config {
+// }
+
+// /**
+//  * All items should have the same type.
+//  * If it includes different type of items, the children's type should be
+//  * considered Any.
+//  */
+// export class ArrayConfig extends Config {
+// }
+
+// /**
+//  * Fixed length array that allows different type of items
+//  */
+// export class TupleConfig extends Config {
+// }
+
+// export class SingleChoiceConfig extends Config {
+// }
+
+// export class MultiChoicesConfig extends Config {
+// }
+
+// export class BooleanConfig extends Config {
+// }
+
+// export class StringConfig extends Config {
+// }
+
+// export class NumberConfig extends Config {
+// }
+
+// export class DateConfig extends Config {
+// }
+
+// export class DateTimeConfig extends Config {
+// }
+
+// export class ColorConfig extends Config {
+// }
+
 export class ConfigItem {
   public type: string;
   _props?: any;

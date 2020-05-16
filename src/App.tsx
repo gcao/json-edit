@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import SplitPane from 'react-split-pane';
 import './App.scss';
 import { RootState } from './app/store';
+import Root from './features/config/Root';
 import JsonEditPopup from './features/json-edit/JsonEditPopup';
 import { JsonRootView } from './features/json-edit/JsonRootView';
 import { selectData, selectPathUnderMouse, STATE_KEY, updateJson } from './features/json-edit/slice';
@@ -27,7 +29,10 @@ function App() {
       <div className="App">
         <div>
           Current Path: <span id="path">{pathUnderMouse}</span>
-          <JsonRootView data={data} />
+          <SplitPane split="vertical">
+              <JsonRootView data={data} />
+              <Root />
+          </SplitPane>
 
           <button className="update"
             onClick={() => dispatch(updateJson(input.value))}
