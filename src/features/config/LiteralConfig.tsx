@@ -1,10 +1,22 @@
 import React from 'react';
-import { ConfigItem } from 'src/jconfig';
+import { GenericProps } from './GenericConfig';
 
-export default function LiteralConfig({ config }: { config: ConfigItem }) {
+export default function LiteralConfig({ config }: GenericProps) {
+  let label = "Literal";
+
+  if (config.type === "string") {
+    label = "String";
+  } else if (config.type === "number") {
+    label = "Number";
+  } else if (config.type === "boolean") {
+    label = "Boolean";
+  } else if (config.type === "any") {
+    label = "Any";
+  }
+
   return (
     <div className="json-config literal">
-      <div>Literal</div>
+      <div>{label}</div>
     </div>
   );
 }
