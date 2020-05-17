@@ -11,11 +11,11 @@ export default function ArrayOfObjectsView(props: any) {
   let keys = R.uniq(R.flatten(R.map(Object.keys, data)));
 
   return (
-    <table className="table json-object-array"
+    <table className="table is-bordered is-striped json-object-array"
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
-      <tbody>
-        <tr className="head">
+      <thead className="head">
+        <tr>
           <th className="index-col">&nbsp;</th>
           {
             keys.map((key, i) =>
@@ -25,6 +25,8 @@ export default function ArrayOfObjectsView(props: any) {
             )
           }
         </tr>
+      </thead>
+      <tbody>
         {
           data.map((row: any, i: number) =>
             <tr key={i} className={'row ' + (i % 2 === 0 ? 'odd' : 'even')}

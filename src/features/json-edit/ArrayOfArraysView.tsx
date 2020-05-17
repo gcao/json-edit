@@ -11,7 +11,7 @@ export default function ArrayOfArraysView(props: any) {
   let width = Number(R.last(data.map(R.length).sort()));
 
   return (
-    <table className={'table json-array-array'}
+    <table className="table is-bordered is-striped json-array-array"
       onMouseOver={createMouseOverHandler(dispatch, path, pathUnderMouse)}
     >
       <thead>

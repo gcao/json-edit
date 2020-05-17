@@ -9,8 +9,8 @@ interface RootProps {
 
 export default function Root({ config }: RootProps) {
   return (
-    <div className="json-config-root">
-      <div>Configuration</div>
+    <div className="json-config root">
+      <p className="title">Document</p>
       <GenericConfig config={config.root} />
     </div>
   );

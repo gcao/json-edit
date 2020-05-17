@@ -68,7 +68,7 @@ import * as R from "ramda";
 
 export class ConfigItem {
   public type: string;
-  _props?: any;
+  _props?: Map<string, ConfigItem>;
   _children?: ConfigItem;
 
   get props() {
@@ -99,9 +99,9 @@ export class ConfigItem {
       o.children = this.children.toSerializable();
     } else if (o.type === "object") {
       o.props = {};
-      for (let [key, value] of Object.entries(this.props)) {
-        o.props[key] = (value as ConfigItem).toSerializable();
-      }
+      this.props.forEach((value, key) => {
+        o.props[key] = value.toSerializable();
+      });
     }
     return o;
   }
@@ -112,7 +112,7 @@ export class ConfigItem {
 
   /**
    * Deserialize from result of ConfigItem.toSerializable().
-   * 
+   *
    * @param o result of ConfigItem.toSerializable()
    */
   static fromSerializable(o: any): ConfigItem {
@@ -121,9 +121,9 @@ export class ConfigItem {
     if (o.type === "array") {
       config._children = this.fromSerializable(o.children);
     } else if (o.type === "object") {
-      config._props = {} as any;
+      config._props = new Map();
       for (let [key, value] of Object.entries(o.props)) {
-        config._props[key] = this.fromSerializable(value);
+        config._props.set(key, this.fromSerializable(value));
       }
     }
     return config;
@@ -160,7 +160,7 @@ export default class JConfig {
     } else if (data && config.type === "object") {
       for (let [key, value] of Object.entries(data)) {
         let childConfig = new ConfigItem();
-        config.props[key] = childConfig;
+        config.props.set(key, childConfig);
         this.dataToConfig(value, childConfig);
       }
     }

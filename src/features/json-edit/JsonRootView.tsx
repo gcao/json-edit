@@ -4,7 +4,7 @@ import JPath from '../../jpath';
 import { selectEditing } from './edit-popup/slice';
 import GenericView from './GenericView';
 import { clearPath } from './slice';
-import './styles.scss';
+import './index.scss';
 
 export function JsonRootView({ data }: any) {
   const dispatch = useDispatch();

@@ -8,10 +8,10 @@ test('JConfig.fromJson() should work', () => {
     "string": "something"
   }`);
   expect(config.root.type).toEqual("object");
-  expect(config.root.props.first.type).toEqual("boolean");
-  expect(config.root.props.second.type).toEqual("array");
-  expect(config.root.props.third.children.type).toEqual("number");
-  expect(config.root.props.string.type).toEqual("string");
+  expect(config.root.props.get("first")?.type).toEqual("boolean");
+  expect(config.root.props.get("second")?.type).toEqual("array");
+  expect(config.root.props.get("third")?.children.type).toEqual("number");
+  expect(config.root.props.get("string")?.type).toEqual("string");
 });
 
 test('JConfig.deserialize() should work', () => {
@@ -23,8 +23,8 @@ test('JConfig.deserialize() should work', () => {
   }`);
   config = JConfig.deserialize(config.toString());
   expect(config.root.type).toEqual("object");
-  expect(config.root.props.first.type).toEqual("boolean");
-  expect(config.root.props.second.type).toEqual("array");
-  expect(config.root.props.third.children.type).toEqual("number");
-  expect(config.root.props.string.type).toEqual("string");
+  expect(config.root.props.get("first")?.type).toEqual("boolean");
+  expect(config.root.props.get("second")?.type).toEqual("array");
+  expect(config.root.props.get("third")?.children.type).toEqual("number");
+  expect(config.root.props.get("string")?.type).toEqual("string");
 });

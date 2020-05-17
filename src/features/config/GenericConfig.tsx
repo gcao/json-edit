@@ -1,6 +1,8 @@
 import React from 'react';
 import { ConfigItem } from 'src/jconfig';
+import ArrayConfig from './ArrayConfig';
 import LiteralConfig from './LiteralConfig';
+import ObjectConfig from './ObjectConfig';
 
 export interface GenericProps {
   config: ConfigItem,
@@ -9,22 +11,15 @@ export interface GenericProps {
 export default function GenericConfig({ config }: GenericProps) {
   if (config.type === "array") {
     return (
-      <div>
-        <div>Array</div>
-        <GenericConfig config={config.children} />
-      </div>
+      <ArrayConfig config={config} />
     );
   } else if (config.type === "object") {
     return (
-      <div>
-        <div>Object</div>
-      </div>
+      <ObjectConfig config={config} />
     );
   } else {
     return (
-      <div>
-        <LiteralConfig config={config} />
-      </div>
+      <LiteralConfig config={config} />
     );
   }
 }

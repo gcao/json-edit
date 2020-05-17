@@ -1,0 +1,18 @@
+.json-config {
+  padding: 3px 8px;
+  border: rgba(128, 128, 128, 0.3) 1px solid;
+
+  &.root {
+    margin-left: 5px;
+  }
+}
+
+.table.object .key {
+  padding-right: 2px;
+  vertical-align: middle;
+  text-align: right;
+  font-weight: bold;
+  &::after {
+    content: " :";
+  }
+}
