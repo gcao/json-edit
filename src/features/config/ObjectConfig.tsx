@@ -8,6 +8,12 @@ export default function ObjectConfig({ config }: GenericProps) {
   }
   return (
     <table className="table is-bordered is-striped object">
+      <thead>
+        <tr className="head">
+          <th align="right">&lt;name&gt;</th>
+          <th>&lt;value&gt;</th>
+        </tr>
+      </thead>
       <tbody>
         {
           Array.from(config.props.keys()).map((key, i) => (
