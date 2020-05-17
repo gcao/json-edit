@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import JPath from '../../jpath';
 import { stringify } from './utils';
+import JConfig from 'src/jconfig';
 
 interface JsonEditState {
   jsonString: string,
   data: any,
+  config?: JConfig,
   pathUnderMouse?: JPath,
 }
 
@@ -29,10 +31,12 @@ export const slice = createSlice({
     updateJson(state: any, action: PayloadAction<any>) {
       state.jsonString = action.payload;
       state.data = JSON.parse(action.payload);
+      state.config = JConfig.fromData(state.data);
     },
     updateData(state: any, action: PayloadAction<any>) {
       let { path, value } = action.payload;
       state.data = path.update(state.data, value);
+      state.config = JConfig.fromData(state.data);
       state.jsonString = stringify(state.data);
     },
     updatePropName(state: any, action: PayloadAction<any>) {
@@ -61,6 +65,7 @@ export const {
 } = slice.actions;
 
 export const selectData = (state: RootState) => state[STATE_KEY].data;
+export const selectConfig = (state: RootState) => state[STATE_KEY].config;
 export const selectJsonString = (state: RootState) => state[STATE_KEY].jsonString;
 export const selectPathUnderMouse = (state: RootState) => state[STATE_KEY].pathUnderMouse;
 

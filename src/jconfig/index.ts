@@ -144,9 +144,12 @@ export default class JConfig {
   }
 
   public static fromJson(json: string): JConfig {
+    return this.fromData(JSON.parse(json));
+  }
+
+  public static fromData(data: any): JConfig {
     const config = new JConfig();
-    const parsed = JSON.parse(json);
-    this.dataToConfig(parsed, config.root);
+    this.dataToConfig(data, config.root);
     return config;
   }
 
@@ -156,6 +159,9 @@ export default class JConfig {
     if (config.type === "array") {
       if (data.length > 0) {
         this.dataToConfig(data[0], config.children);
+        if (config.children.type === "object") {
+          // TODO: discover properties from all elements in the array
+        }
       }
     } else if (data && config.type === "object") {
       for (let [key, value] of Object.entries(data)) {

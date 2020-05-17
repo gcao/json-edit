@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import SplitPane from 'react-split-pane';
 import './App.scss';
 import Root from './features/config/Root';
+import { selectConfig } from './features/json-edit/slice';
 import JsonEditPopup from './features/json-edit/JsonEditPopup';
 import { JsonRootView } from './features/json-edit/JsonRootView';
 import { selectData, selectJsonString, selectPathUnderMouse, updateJson } from './features/json-edit/slice';
-import JConfig from './jconfig';
 
 export default function App() {
   const dispatch = useDispatch();
   const data = useSelector(selectData);
+  const config = useSelector(selectConfig);
   const jsonString = useSelector(selectJsonString);
-  const config = JConfig.fromJson(jsonString);
 
   let pathUnderMouse: any = useSelector(selectPathUnderMouse);
   if (pathUnderMouse != null) {
@@ -27,7 +27,9 @@ export default function App() {
         Current Path: <span id="path">{pathUnderMouse}</span>
         <SplitPane split="vertical">
           <JsonRootView data={data} />
-          <Root config={config} />
+          {
+            config ? <Root config={config} /> : ""
+          }
         </SplitPane>
 
         <button className="update"
