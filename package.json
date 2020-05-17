@@ -3,7 +3,7 @@
   "description": "A generic JSON editor",
   "version": "0.1.0",
   "repository": "github:gcao/json-edit",
-  "homepage": "https://github.com/gcao/json-edit",
+  "homepage": "https://gcao.github.com/json-edit",
   "license": "MIT",
   "engines": {
     "node": ">=12.13"
